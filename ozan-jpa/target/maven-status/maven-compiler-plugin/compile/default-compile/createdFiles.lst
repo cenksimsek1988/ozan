@@ -1,0 +1,8 @@
+cenk\ozan\jpa\common\OzConstants.class
+cenk\ozan\jpa\entity\rate\OzRate.class
+cenk\ozan\jpa\repo\OzRateRepo.class
+cenk\ozan\jpa\repo\OzCurrencyRepo.class
+cenk\ozan\jpa\entity\rate\OzCurrency.class
+cenk\ozan\jpa\repo\OzConvertionRepo.class
+cenk\ozan\jpa\entity\convertion\OzConvertion.class
+cenk\ozan\jpa\entity\rate\OzRateMeta.class

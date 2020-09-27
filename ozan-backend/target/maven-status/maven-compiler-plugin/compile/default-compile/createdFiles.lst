@@ -1,0 +1,17 @@
+cenk\ozan\backend\exception\OzCurrencyPairNotFetchedException.class
+cenk\ozan\backend\pojo\RatesApiRateResponse.class
+cenk\ozan\backend\exception\OzNoRateForGivenDateException.class
+cenk\ozan\backend\exception\OzUnknownCurrencyCodesException.class
+cenk\ozan\backend\exception\OzException.class
+cenk\ozan\backend\service\OzRateFetcher.class
+cenk\ozan\backend\pojo\OzConvertionListRequest.class
+cenk\ozan\backend\service\OzRateServiceBasic.class
+cenk\ozan\backend\exception\OzUnknownCurrencyCodeExpectation.class
+cenk\ozan\backend\pojo\OzRateResponse.class
+cenk\ozan\backend\schedule\OzRateSyncronizer.class
+cenk\ozan\backend\service\OzConvertionService.class
+cenk\ozan\backend\exception\OzDateParsingException.class
+cenk\ozan\backend\exception\OzConvertionListRequestFormatError.class
+cenk\ozan\backend\service\OzRateFetcher$RateApiFetchCallback.class
+cenk\ozan\backend\pojo\OzConvertionResponse.class
+cenk\ozan\backend\service\OzRateService.class

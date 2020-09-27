@@ -1,0 +1,16 @@
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzUnknownCurrencyCodesException.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\pojo\RatesApiRateResponse.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzNoRateForGivenDateException.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzCurrencyPairNotFetchedException.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\service\OzConvertionService.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzUnknownCurrencyCodeExpectation.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\service\OzRateService.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\pojo\OzRateResponse.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\schedule\OzRateSyncronizer.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\service\OzRateFetcher.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\pojo\OzConvertionListRequest.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzConvertionListRequestFormatError.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzException.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\exception\OzDateParsingException.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\pojo\OzConvertionResponse.java
+C:\Users\aureo\git\ozan\ozan-backend\src\main\java\cenk\ozan\backend\service\OzRateServiceBasic.java
