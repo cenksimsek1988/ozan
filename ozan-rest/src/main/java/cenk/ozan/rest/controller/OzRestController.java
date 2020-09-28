@@ -2,10 +2,7 @@ package cenk.ozan.rest.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import cenk.ozan.backend.exception.OzException;
 import cenk.ozan.backend.pojo.OzConvertionListRequest;
 import cenk.ozan.backend.pojo.OzConvertionResponse;
-import cenk.ozan.backend.pojo.OzRateResponse;
 import cenk.ozan.backend.service.OzConvertionService;
 import cenk.ozan.backend.service.OzRateService;
 import cenk.ozan.jpa.common.OzConstants;
@@ -29,7 +25,6 @@ import cenk.ozan.rest.pojo.OzErrorResponse;
 @CrossOrigin(origins = "${cross.origin:http://localhost:3000}")
 @RestController
 public class OzRestController implements OzConstants{
-	private static final Logger logger = LoggerFactory.getLogger(OzRestController.class);
 
 	@Autowired
 	private OzRateService rateService;

@@ -12,7 +12,6 @@ import cenk.ozan.backend.exception.OzNoRateForGivenDateException;
 import cenk.ozan.backend.exception.OzUnknownCurrencyCodeExpectation;
 import cenk.ozan.backend.exception.OzUnknownCurrencyCodesException;
 import cenk.ozan.backend.pojo.OzConvertionResponse;
-import cenk.ozan.backend.pojo.OzRateResponse;
 import cenk.ozan.backend.pojo.RatesApiRateResponse;
 import cenk.ozan.jpa.entity.convertion.OzConvertion;
 import cenk.ozan.jpa.entity.rate.OzRate;

@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public interface OzConstants {
 	public static final int UNKNOWN_ERROR_CODE = 9000;

@@ -1,7 +1,5 @@
 package cenk.ozan.jpa.common;
 
-import java.io.Serializable;
-
 public interface OzEntity {
 	public long getId();
 

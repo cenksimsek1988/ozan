@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,12 +21,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import cenk.ozan.backend.pojo.OzConvertionListRequest;
 import cenk.ozan.backend.pojo.OzConvertionResponse;
 import cenk.ozan.jpa.common.OzConstants;
-import cenk.ozan.jpa.entity.convertion.OzConvertion;
 import cenk.ozan.jpa.entity.rate.OzRate;
 import cenk.ozan.rest.OzRestApi;
 import cenk.ozan.rest.pojo.OzErrorResponse;
