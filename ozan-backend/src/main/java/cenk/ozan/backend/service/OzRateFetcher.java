@@ -27,10 +27,12 @@ public class OzRateFetcher implements OzConstants {
 	private static final Logger logger = LoggerFactory.getLogger(OzRateFetcher.class);
 	private static final OkHttpClient client;
 	@Autowired
-	private OzRateService rateService;
+	protected OzRateService rateService;
 	@Value("${ozan.source.api.url:https://api.ratesapi.io/api/latest}")
 	private String url;
 	public final List<String> fetchFailures = new ArrayList<>();
+	private final List<String> currenciesToFetch = new ArrayList<>();
+	private boolean onRequest = false;
 	static {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		builder.connectTimeout(30, TimeUnit.SECONDS);
@@ -44,16 +46,34 @@ public class OzRateFetcher implements OzConstants {
 		rateService.prepare();
 	}
 	
-	public List<String> fetch() {
+	public List<String> fetch() throws InterruptedException {
 		fetchFailures.clear();
+		currenciesToFetch.clear();
 		for(String baseCurrencyCode:CURRENCY_CODES) {
+			currenciesToFetch.add(baseCurrencyCode);
 			fetchData(url, baseCurrencyCode);
 		}
+		Thread.sleep(5000);
+		int trial = 0;
+		while(!allFetched() && trial <= 5) {
+			trial++;
+			onRequest = true;
+			for(String notFetchedOne:currenciesToFetch) {
+				fetchData(url, notFetchedOne);
+			}
+			onRequest = false;
+			Thread.sleep(4000);
+		}
+		logger.info("All currencies are fetched");
 		return fetchFailures;
 	}
 	
-	@Getter
+	public boolean allFetched() {
+		return currenciesToFetch.isEmpty();
+	}
+	
 	private class RateApiFetchCallback implements Callback{
+		@Getter
 		private final String currencyCode;
 		
 		RateApiFetchCallback(String currencyCode){
@@ -62,6 +82,8 @@ public class OzRateFetcher implements OzConstants {
 
 		@Override
 		public void onFailure(Call call, IOException e) {
+			logger.error("could not fetch exchange rates for {}", currencyCode);
+			e.printStackTrace();
 			fetchFailures.add(currencyCode);
 		}
 
@@ -75,6 +97,9 @@ public class OzRateFetcher implements OzConstants {
 						RatesApiRateResponse fxRateResponse = JACKSON_MAPPER.readValue(bodyString, RatesApiRateResponse.class);
 						try {
 							rateService.saveResponse(fxRateResponse);
+							if(!onRequest) {
+								currenciesToFetch.remove(currencyCode);
+							}
 							return;
 						} catch (Exception e) {
 							logger.error(e.getMessage());

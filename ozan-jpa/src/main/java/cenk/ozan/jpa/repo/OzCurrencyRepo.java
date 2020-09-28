@@ -11,9 +11,5 @@ import cenk.ozan.jpa.entity.rate.OzCurrency;
 @Repository
 public interface OzCurrencyRepo extends JpaRepository<OzCurrency, Long> {
 
-	OzConvertion findById(long id);
-	
-	OzConvertion findByCode(String code);
-
 	List<OzCurrency> findAll();
 }

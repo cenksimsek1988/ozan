@@ -8,9 +8,11 @@ import lombok.Data;
 @Data
 public class OzErrorResponse {
 	@JsonProperty("ERROR CODE")
-	private final int errorCode;
+	private int errorCode;
 	@JsonProperty("ERROR MESSAGE")
-	private final String msg;
+	private String msg;
+	
+	public OzErrorResponse() {}
 	
 	public OzErrorResponse(OzException e) {
 		errorCode = e.errorCode();

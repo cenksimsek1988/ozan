@@ -13,15 +13,16 @@ import org.springframework.stereotype.Service;
 import cenk.ozan.backend.exception.OzConvertionListRequestFormatError;
 import cenk.ozan.backend.exception.OzDateParsingException;
 import cenk.ozan.backend.pojo.OzConvertionListRequest;
+import cenk.ozan.jpa.common.OzConstants;
 import cenk.ozan.jpa.entity.convertion.OzConvertion;
 import cenk.ozan.jpa.repo.OzConvertionRepo;
 
 @Service
-public class OzConvertionService extends OzRateServiceBasic{
+public class OzConvertionService implements OzConstants{
 	private static final Logger logger = LoggerFactory.getLogger(OzConvertionService.class);
 	
 	@Autowired
-	private OzConvertionRepo convRepo;
+	protected OzConvertionRepo convRepo;
 	
 	public List<OzConvertion> list(OzConvertionListRequest req) throws OzDateParsingException, OzConvertionListRequestFormatError{
 		Long tId = req.getTransactionId();

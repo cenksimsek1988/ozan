@@ -13,7 +13,13 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import cenk.ozan.jpa.common.OzEntity;
 import cenk.ozan.jpa.entity.rate.OzRate;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,7 +30,8 @@ import lombok.EqualsAndHashCode;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "rate", "id"})
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class OzConvertion {
+public class OzConvertion implements OzEntity{
+
 	@Id
 	@GeneratedValue
 	private long id;
@@ -45,9 +52,21 @@ public class OzConvertion {
 	}
 	
 	@Transient
+	@JsonSetter(value = "exchangeRate")
+	public void setExchangeRate(float val) {
+		rate.setRate(val);
+	}
+	
+	@Transient
 	@JsonGetter(value = "from")
 	public String getFrom() {
 		return rate.getFrom().getCode();
+	}
+	
+	@Transient
+	@JsonSetter(value = "from")
+	public void setFrom(String val) {
+		rate.getFrom().setCode(val);
 	}
 	
 	@Transient
@@ -57,9 +76,21 @@ public class OzConvertion {
 	}
 	
 	@Transient
+	@JsonSetter(value = "to")
+	public void setTo(String val) {
+		rate.getTo().setCode(val);
+	}
+	
+	@Transient
 	@JsonGetter(value = "targetAmount")
 	public float getTargetAmount() {
 		return amount * rate.getRate();
+	}
+	
+	@Transient
+	@JsonSetter(value = "targetAmount")
+	public void setTargetAmount(float val) {
+		
 	}
 	
 }

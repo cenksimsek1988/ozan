@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,7 @@ import cenk.ozan.jpa.entity.convertion.OzConvertion;
 import cenk.ozan.jpa.entity.rate.OzRate;
 import cenk.ozan.rest.pojo.OzErrorResponse;
 
-@CrossOrigin(origins = "${cross.origin}")
+@CrossOrigin(origins = "${cross.origin:http://localhost:3000}")
 @RestController
 public class OzRestController implements OzConstants{
 	private static final Logger logger = LoggerFactory.getLogger(OzRestController.class);

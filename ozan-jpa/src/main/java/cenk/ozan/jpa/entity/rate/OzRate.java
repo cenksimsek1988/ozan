@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import cenk.ozan.jpa.common.OzEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,7 +22,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "id", "date", "from", "to"})
-public class OzRate {
+public class OzRate implements OzEntity {
 	
 	public OzRate() {}
 	

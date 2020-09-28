@@ -3,14 +3,17 @@ package cenk.ozan.jpa.common;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public interface OzConstants {
 	public static final int UNKNOWN_ERROR_CODE = 9000;
 	public static final String UNKNOWN_ERROR_MESSAGE = "An uncategorized error occured. Please check server's log";
 
 	public static final ObjectMapper JACKSON_MAPPER = new ObjectMapper();
-//	public static final DateTimeFormatter RATES_API_DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
-//	new DateTimeFormat("uho");
+	public static final ObjectWriter JACKSON_WRITER = JACKSON_MAPPER.writer().withDefaultPrettyPrinter();
+
+	
 	public static final DateTimeFormatter RATES_API_DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
 
 

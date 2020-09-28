@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import cenk.ozan.jpa.common.OzEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 @Data
@@ -15,12 +16,12 @@ import lombok.EqualsAndHashCode;
 @Table
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler"})
-public class OzCurrency {
+public class OzCurrency implements OzEntity {
 	@Id
 	@GeneratedValue
 	private long id;
 
-	@Column
+	@Column(unique = true)
 	@EqualsAndHashCode.Include
 	private String code;
 	

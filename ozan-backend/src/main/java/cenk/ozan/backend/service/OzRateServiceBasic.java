@@ -29,14 +29,14 @@ import cenk.ozan.jpa.repo.OzRateRepo;
 class OzRateServiceBasic implements OzConstants{
 	private static final Logger logger = LoggerFactory.getLogger(OzRateServiceBasic.class);
 	@Autowired
-	private OzRateRepo rateRepo;
+	protected OzRateRepo rateRepo;
 	@Autowired
-	private OzConvertionRepo convRepo;
+	protected OzConvertionRepo convRepo;
 	@Autowired
-	private OzCurrencyRepo currRepo;
-	private Map<OzCurrency, Map<OzCurrency, OzRate>> allRates = new HashMap<>();
-	private Map<OzCurrency, Map<OzCurrency, OzRateMeta>> latestFetches = new HashMap<>();
-	private Map<String, OzCurrency> currencyMap = new HashMap<>();
+	protected OzCurrencyRepo currRepo;
+	private static Map<OzCurrency, Map<OzCurrency, OzRate>> allLatestRates = new HashMap<>();
+	private static Map<OzCurrency, Map<OzCurrency, OzRateMeta>> latestFetches = new HashMap<>();
+	private static Map<String, OzCurrency> currencyMap = new HashMap<>();
 
 	protected void mapRate(String base, LocalDate date, Map<String, Float> rates) throws OzUnknownCurrencyCodesException {
 		OzUnknownCurrencyCodesException exp = new OzUnknownCurrencyCodesException();
@@ -46,7 +46,7 @@ class OzRateServiceBasic implements OzConstants{
 			OzCurrency from = getCurrency(base);
 
 			// latest infos before daily fetch
-			Map<OzCurrency, OzRate> rateMapOfBase = allRates.getOrDefault(from, new HashMap<>());
+			Map<OzCurrency, OzRate> rateMapOfBase = allLatestRates.getOrDefault(from, new HashMap<>());
 			Map<OzCurrency, OzRateMeta> metaMapOfBase = latestFetches.getOrDefault(base, new HashMap<>());
 
 			for(String toString:rates.keySet()) {
@@ -89,7 +89,7 @@ class OzRateServiceBasic implements OzConstants{
 
 			// keeping just the latest rates in memory for performance
 			latestFetches.put(from, metaMapOfBase);
-			allRates.put(from, rateMapOfBase);
+			allLatestRates.put(from, rateMapOfBase);
 
 			if(!exp.getUnknownCodes().isEmpty()) {
 				throw exp;
@@ -123,6 +123,17 @@ class OzRateServiceBasic implements OzConstants{
 			LocalDate date = LocalDate.now();
 			return new OzRate(date, from, to, 1f);
 		}
+		
+		// check first from memory for performance
+		Map<OzCurrency, OzRate> baseCurrencyMap = allLatestRates.get(from);
+		if(baseCurrencyMap!=null) {
+			OzRate ozRate = baseCurrencyMap.get(to);
+			if(ozRate!=null) {
+				return ozRate;
+			}
+		}
+		
+		
 		LocalDate latestUpdate = getLatestUpdateDate(from, to);
 		OzRate  ozRate = rateRepo.findByDateAndFromAndTo(latestUpdate, from, to);
 		if(ozRate!=null) {

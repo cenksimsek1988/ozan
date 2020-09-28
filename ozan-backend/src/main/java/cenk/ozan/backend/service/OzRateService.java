@@ -26,17 +26,15 @@ public class OzRateService extends OzRateServiceBasic{
 		LocalDate date = null;
 		try {
 			date = LocalDate.parse(dateString, RATES_API_DATE_FORMAT);
+			mapRate(response.getBase(), date, response.getRates());
 		} catch (Exception e){
 			throw new OzDateParsingException(response.getBase(), e);
 		}
-		mapRate(response.getBase(), date, response.getRates());
+		logger.debug("Exchange rates for currency {} is fetched from rates-api", response.getBase());
 	}
 
 	public OzRate getRate(String baseCode, String measuringCode) throws OzCurrencyPairNotFetchedException, OzNoRateForGivenDateException, OzUnknownCurrencyCodeExpectation {
 		return getLatestRate(baseCode, measuringCode);
-//		OzRateResponse resp = new OzRateResponse();
-//		resp.setExchangeRate(ozRate.getRate());
-//		return resp;
 	}
 
 	public OzConvertionResponse convert(String from, String to, float amount) throws Exception {
