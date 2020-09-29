@@ -9,6 +9,7 @@
 - Clone the repository into your ide
 - Create a corresponding database according to application.properties which is located under config folder
 - Run OzRestApi under ozan-rest module
+- If you wish to run project as standalone, use the jar qualified with suffix "spring-boot" under ozan-rest module
 
 ## Using API's
 - Import ozan-rest.json collection into postman
